@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://byf7wwixpndi6"]
+
+[ext_resource type="Script" uid="uid://dl4lnawkg4dck" path="res://scenes/end_scene.gd" id="1_e16q8"]
+[ext_resource type="Theme" uid="uid://c6ys1va75bwsj" path="res://assets/buttontheme.tres" id="2_4406v"]
+[ext_resource type="Texture2D" uid="uid://b0pmuepnehb71" path="res://assets/ending.png" id="2_u5rql"]
+[ext_resource type="LabelSettings" uid="uid://dliju076gese8" path="res://assets/custom_font.tres" id="3_u5rql"]
+[ext_resource type="AudioStream" uid="uid://bkwrbqn35nm4x" path="res://assets/sounds/success.ogg" id="6_4406v"]
+[ext_resource type="Shader" uid="uid://g0ajn2e2p8u5" path="res://scripts/shader.gdshader" id="6_umdg0"]
+[ext_resource type="Script" uid="uid://b1bq2tnfavoke" path="res://scenes/ColorRect.gd" id="7_p74es"]
+[ext_resource type="PackedScene" uid="uid://daovn2c327yk" path="res://scenes/particles2.tscn" id="11_oec0b"]
+[ext_resource type="AudioStream" uid="uid://byob35lkur6lt" path="res://assets/sounds/music.ogg" id="16_rvimi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
+shader = ExtResource("6_umdg0")
+shader_parameter/tolerance = 0.2000000095
+shader_parameter/noise_strength = 0.09
+shader_parameter/color_bg = Color(0.43739998, 0.74789995, 0.81, 1)
+shader_parameter/color_fg = Color(0.9522638, 0.7172818, 0, 1)
+
+[node name="EndScene" type="Control" unique_id=701078603]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_e16q8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=154610425]
+position = Vector2(576, 324)
+texture = ExtResource("2_u5rql")
+
+[node name="ShareButton" type="Button" parent="." unique_id=715358713]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 610.0
+offset_right = 629.0
+offset_bottom = 645.0
+theme = ExtResource("2_4406v")
+text = "- SHARE -"
+flat = true
+
+[node name="EndLabel" type="Label" parent="." unique_id=1286084148]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 1152.0
+offset_bottom = 603.0
+text = "completed"
+label_settings = ExtResource("3_u5rql")
+horizontal_alignment = 1
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=197600211]
+stream = ExtResource("16_rvimi")
+autoplay = true
+parameters/looping = true
+
+[node name="ambient" type="AudioStreamPlayer" parent="." unique_id=459067467]
+stream = ExtResource("6_4406v")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1720108475]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=702994035]
+material = SubResource("ShaderMaterial_kxqg4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_p74es")
+
+[node name="particles" parent="." unique_id=1873544939 instance=ExtResource("11_oec0b")]
+position = Vector2(576, 324)

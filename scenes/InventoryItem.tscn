@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c1txkvk4hw7ld"]
+
+[ext_resource type="Script" uid="uid://clhylecosxk8b" path="res://scenes/InventoryItem.gd" id="1_6blu1"]
+
+[node name="TextureButton" type="TextureButton" unique_id=530298540]
+z_index = 99
+z_as_relative = false
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_6blu1")

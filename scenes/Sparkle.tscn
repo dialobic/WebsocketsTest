@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://chn8hxh5d2ns0"]
+
+[ext_resource type="Texture2D" uid="uid://q1q3wglkf4ih" path="res://assets/spark.png" id="1_3jti4"]
+[ext_resource type="Script" uid="uid://b5oqp0e6eu84f" path="res://scenes/Sparkle.gd" id="2_q37e2"]
+
+[node name="Sparkle" type="Sprite2D" unique_id=1965900530]
+z_index = 99
+texture = ExtResource("1_3jti4")
+script = ExtResource("2_q37e2")

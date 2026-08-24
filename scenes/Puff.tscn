@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cb5etmwaxh5do"]
+
+[ext_resource type="Texture2D" uid="uid://bgaiva857i6i2" path="res://assets/puff3.png" id="1_2usy8"]
+[ext_resource type="Texture2D" uid="uid://kw2hwa06d44l" path="res://assets/puff1.png" id="1_dltwg"]
+[ext_resource type="Texture2D" uid="uid://8bqcvttv27dt" path="res://assets/puff2.png" id="2_6nso5"]
+[ext_resource type="Script" uid="uid://clhsfvn3ogamd" path="res://scenes/Puff.gd" id="5_dltwg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7fp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dltwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6nso5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2usy8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[node name="Puff" type="AnimatedSprite2D" unique_id=1839959014]
+z_index = 99
+sprite_frames = SubResource("SpriteFrames_c7fp4")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("5_dltwg")

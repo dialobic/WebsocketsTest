@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dliju076gese8"]
+
+[ext_resource type="FontFile" uid="uid://cijy4t3mvthb1" path="res://assets/FuturaHandwritten.ttf" id="1_pig5f"]
+
+[resource]
+font = ExtResource("1_pig5f")
+font_size = 21
+font_color = Color(0, 0, 0, 1)

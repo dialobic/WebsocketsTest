@@ -1,0 +1,14 @@
+# File caricati da Godot (import)
+.godot/
+.import/
+
+# File specifici dell'utente
+export_preset.cfg
+.mono/
+mono_crash_release_cleanup.sh
+
+# Binary ed eseguibili esportati
+*.pck
+*.exe
+*.zip
+*.app
