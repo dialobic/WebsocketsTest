@@ -22,8 +22,8 @@ extends Node2D
 
 # Definisci la mappa stanza → scena speciale
 const SPECIAL_ROOMS = {
-	"l05telescope": preload("res://scenes/telescope_luig.tscn"),
-	"p05telescope": preload("res://scenes/telescope_pog.tscn")
+	#"l05telescope": preload("res://scenes/telescope_luig.tscn"),
+	#"p05telescope": preload("res://scenes/telescope_pog.tscn")
 }
 var special_instance: Node = null
 
@@ -62,11 +62,22 @@ func _ready() -> void:
 	setup_sparkle_system()
 	setup_help_system()
 
+	# MULTIPLAYER signal
+	CouchMultiplayer.remote_message_received.connect(_on_remote_message)
+
 	puzzle_check_timer = Timer.new()
 	puzzle_check_timer.one_shot = true
-	puzzle_check_timer.wait_time = 1.0
+	puzzle_check_timer.wait_time = 0.5
 	puzzle_check_timer.timeout.connect(_check_puzzle_completion)
 	add_child(puzzle_check_timer)
+
+# MULTIPLAYER signal
+func _on_remote_message(type: String, payload: Dictionary) -> void:
+	match type:
+		"room_change":
+			var room = payload.get("room", "")
+			if room != "":
+				load_room(room)
 
 func _save_current_puzzle_state() -> void:
 	if not current_room:
@@ -460,8 +471,21 @@ func handle_object_interaction(obj: Node) -> void:
 			wrong_player.play()
 		"puzzle":
 			handle_puzzle_interaction(obj)
-		"sposta":
-			start_drag_sposta(obj)
+		"multi":  # <-- MULTIPLAYER
+			handle_multi_object(obj)
+
+func handle_multi_object(obj: Node) -> void: # === MULTIPLAYER
+	# The target_room is the room to which the LOCAL PLAYER moves
+	var local_target = obj.target_room
+	
+	# item_name contains the room to which the OTHER PLAYER must go
+	var remote_target = obj.item_name
+	
+	# Change room for the local player
+	load_room(local_target)
+	
+	# Send the signal to the other player (if connected)
+	CouchMultiplayer.send_message("room_change", {"room": remote_target})
 
 func handle_walking_door(door: InteractiveObject) -> void:
 	if is_cutscene or is_walking_cutscene:

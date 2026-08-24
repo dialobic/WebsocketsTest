@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="LuigPog4"
+config/name="LuigPog5"
 run/main_scene="uid://da1k827gnvovs"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.4, 0.8, 0.8, 1)
@@ -25,6 +25,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/GameState.gd"
 CouchGames="*uid://dc77t8o2adovr"
+CouchMultiplayer="*uid://dsk5m4et0ssqq"
 
 [display]
 
