@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://v4sq3uf4qfq7" path="res://assets/sounds/take.ogg" id="14_icif4"]
 [ext_resource type="AudioStream" uid="uid://bkwrbqn35nm4x" path="res://assets/sounds/success.ogg" id="16_icif4"]
 [ext_resource type="AudioStream" uid="uid://byob35lkur6lt" path="res://assets/sounds/music.ogg" id="17_21xg8"]
+[ext_resource type="Script" uid="uid://bp7646vhq35h3" path="res://scenes/fog.gd" id="19_2gh7q"]
 [ext_resource type="Script" uid="uid://yaysfhbvcfaf" path="res://scenes/scroll_container.gd" id="19_iaegw"]
+[ext_resource type="Texture2D" uid="uid://xyfqnqy24dxb" path="res://assets/fog.png" id="20_a5tct"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("7_qitmq")
@@ -167,3 +169,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 7
 alignment = 1
+
+[node name="Fog" type="Node2D" parent="." unique_id=1377513238]
+script = ExtResource("19_2gh7q")
+
+[node name="fog_sx" type="Sprite2D" parent="Fog" unique_id=1756866107]
+position = Vector2(576, 324)
+texture = ExtResource("20_a5tct")
+
+[node name="fog_dx" type="Sprite2D" parent="Fog" unique_id=1689807769]
+position = Vector2(576, 324)
+texture = ExtResource("20_a5tct")
+flip_h = true
+flip_v = true

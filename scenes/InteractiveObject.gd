@@ -187,7 +187,9 @@ func create_puff_effect(position: Vector2) -> void:
 	var puff = PUFF_SCENE.instantiate()
 	get_tree().current_scene.add_child(puff)
 	puff.global_position = position
-	puff.rotation = randf() * 2.0 * PI
+	# Attendi un frame per assicurarti che la posizione sia applicata
+	await get_tree().process_frame
+	puff.restart()  # Riavvia il sistema di particelle (se necessario)
 
 func animate_collection() -> void:
 	is_being_removed = true

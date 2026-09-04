@@ -1,31 +1,26 @@
-[gd_scene format=3 uid="uid://cb5etmwaxh5do"]
+[gd_scene format=3 uid="uid://xkkfc26r1smh"]
 
-[ext_resource type="Texture2D" uid="uid://bgaiva857i6i2" path="res://assets/puff3.png" id="1_2usy8"]
-[ext_resource type="Texture2D" uid="uid://kw2hwa06d44l" path="res://assets/puff1.png" id="1_dltwg"]
-[ext_resource type="Texture2D" uid="uid://8bqcvttv27dt" path="res://assets/puff2.png" id="2_6nso5"]
-[ext_resource type="Script" uid="uid://clhsfvn3ogamd" path="res://scenes/Puff.gd" id="5_dltwg"]
+[ext_resource type="Texture2D" uid="uid://biaxgbj2bwkmg" path="res://assets/bollo.png" id="1_8awja"]
+[ext_resource type="Script" uid="uid://482kqvo26p3m" path="res://scenes/particles.gd" id="2_5wtto"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c7fp4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_dltwg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_6nso5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_2usy8")
-}],
-"loop": false,
-"name": &"default",
-"speed": 18.0
-}]
+[sub_resource type="Gradient" id="Gradient_lctmm"]
+offsets = PackedFloat32Array(0, 0.27037036, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Puff" type="AnimatedSprite2D" unique_id=1839959014]
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=385270543]
 z_index = 99
-sprite_frames = SubResource("SpriteFrames_c7fp4")
-autoplay = "default"
-frame = 2
-frame_progress = 1.0
-script = ExtResource("5_dltwg")
+emitting = false
+amount = 5
+texture = ExtResource("1_8awja")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 180.0
+scale_amount_min = 0.2
+scale_amount_max = 0.9
+color_ramp = SubResource("Gradient_lctmm")
+script = ExtResource("2_5wtto")

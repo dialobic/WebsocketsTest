@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgaiva857i6i2"
-path="res://.godot/imported/puff3.png-8d8e9da3821d19fecfb4fbbfed5ec662.ctex"
+uid="uid://biaxgbj2bwkmg"
+path="res://.godot/imported/bollo.png-31d91fbe71f159b6a148e7809f9b1e27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/puff3.png"
-dest_files=["res://.godot/imported/puff3.png-8d8e9da3821d19fecfb4fbbfed5ec662.ctex"]
+source_file="res://assets/bollo.png"
+dest_files=["res://.godot/imported/bollo.png-31d91fbe71f159b6a148e7809f9b1e27.ctex"]
 
 [params]
 

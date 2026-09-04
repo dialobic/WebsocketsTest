@@ -13,8 +13,8 @@ var used_items: Dictionary = {}
 var particle_played: Dictionary = {}   # key: room_key, value: bool
 var puzzle_states: Dictionary = {}
 # === CONFIG ===
-var color_bg : Color = Color("57beaeff") # rosa e9d4cf
-var color_fg : Color = Color("a5c37cff")
+var color_bg : Color = Color("e1ba69ff") # rosa e9d4cf
+var color_fg : Color = Color("fcceacff")
 var win_bonus_count: int = 5
 
 # === PROGRESS ===

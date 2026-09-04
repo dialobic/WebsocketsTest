@@ -71,13 +71,27 @@ func _ready() -> void:
 	puzzle_check_timer.timeout.connect(_check_puzzle_completion)
 	add_child(puzzle_check_timer)
 
-# MULTIPLAYER signal
+# MULTIPLAYER signal riceve
 func _on_remote_message(type: String, payload: Dictionary) -> void:
 	match type:
 		"room_change":
-			var room = payload.get("room", "")
-			if room != "":
-				load_room(room)
+			var target_room = payload.get("room", "")
+			if target_room == "":
+				return
+			
+			# Controlla se il cambio è valido: le prime 3 lettere della stanza attuale
+			# devono corrispondere alle prime 3 lettere della stanza target.
+			var current_key = current_room.room_key if current_room else ""
+			if current_key == "":
+				return
+			
+			var current_prefix = current_key.substr(0, 3)
+			var target_prefix = target_room.substr(0, 3)
+			
+			if current_prefix == target_prefix:
+				load_room(target_room)
+			else:
+				print("Remote room change ignored: current prefix ", current_prefix, " != ", target_prefix)
 
 func _save_current_puzzle_state() -> void:
 	if not current_room:
@@ -474,18 +488,20 @@ func handle_object_interaction(obj: Node) -> void:
 		"multi":  # <-- MULTIPLAYER
 			handle_multi_object(obj)
 
-func handle_multi_object(obj: Node) -> void: # === MULTIPLAYER
-	# The target_room is the room to which the LOCAL PLAYER moves
+func handle_multi_object(obj: Node) -> void:
+	# 1. Cambio stanza locale (sempre)
 	var local_target = obj.target_room
+	if local_target != "":
+		load_room(local_target)
 	
-	# item_name contains the room to which the OTHER PLAYER must go
+	# 2. Cambio stanza remoto (solo se specificato)
 	var remote_target = obj.item_name
-	
-	# Change room for the local player
-	load_room(local_target)
-	
-	# Send the signal to the other player (if connected)
-	CouchMultiplayer.send_message("room_change", {"room": remote_target})
+	if remote_target != "":
+		# Invia il comando al server. Il ricevente deciderà se applicarlo
+		# in base al prefisso di 3 lettere della sua stanza attuale.
+		CouchMultiplayer.send_message("room_change", {
+			"room": remote_target
+		})
 
 func handle_walking_door(door: InteractiveObject) -> void:
 	if is_cutscene or is_walking_cutscene:
@@ -606,8 +622,11 @@ func _play_named_sound(sound_name: String) -> void:
 		"success":
 			success_player.play()
 		"done":
-			done_player.pitch_scale = randf_range(0.95, 1.05)
+			done_player.pitch_scale = randf_range(0.95, 1.08)
 			done_player.play()
 		"woosh":
-			woosh_player.pitch_scale = randf_range(0.95, 1.05)
+			woosh_player.pitch_scale = randf_range(0.95, 1.08)
 			woosh_player.play()
+		"wrong":
+			wrong_player.pitch_scale = randf_range(0.95, 1.08)
+			wrong_player.play()
